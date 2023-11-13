@@ -1,0 +1,10 @@
+{
+	"experiment" : {
+		"name" : "digit-span",
+		"fullpath" : "LillianXu/digit_span-dev"
+	},
+
+	"pavlovia" : {
+		"URL" : "https://pavlovia.org"
+	}
+}

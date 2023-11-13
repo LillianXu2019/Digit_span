@@ -1,0 +1,4 @@
+"trial_type","trial_index","time_elapsed","internal_node_id","subject","order","exp_id","full_screen","focus_shifts","success","rt","stimulus","key_press","trial_id"
+"pavlovia","0","2737","0.0-0.0","1000000","2","digit-span","false","0","","","","",""
+"fullscreen","1","5885","0.0-1.0","1000000","2","digit-span","true","0","true","","","",""
+"html-keyboard-response","2","186396","0.0-2.0-0.0","1000000","2","digit-span","false","1","","null","<div class = centerbox><p class = center-block-text>Welcome to the number game! It will take less than 5 minutes. Press <strong>""Enter/Return""</strong> to begin.</p></div>","null","instruction"

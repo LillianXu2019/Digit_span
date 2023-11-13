@@ -1,0 +1,3 @@
+"trial_type","trial_index","time_elapsed","internal_node_id","subject","exp_id","full_screen","focus_shifts","success"
+"pavlovia","0","2337","0.0-0.0","581","digit-span","false","0",""
+"fullscreen","1","4725","0.0-1.0","581","digit-span","true","0","true"
