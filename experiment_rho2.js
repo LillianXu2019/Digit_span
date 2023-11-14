@@ -202,9 +202,9 @@ var response_grid =
 /* ************************************ */
 
 /* Enter subject id */
-var subject_id = jsPsych.data.getURLVariable('participantID')
-console.log("subject_id is " + subject_id)
-jsPsych.data.addProperties({subject: subject_id});
+// var subject_id = jsPsych.data.getURLVariable('participantID')
+// console.log("subject_id is " + subject_id)
+// jsPsych.data.addProperties({subject: subject_id});
 
 // Set up attention check node
 var attention_check_block = {
