@@ -1,13 +1,12 @@
 /* preload images */
+let repo = "https://lillianxu2019.github.io/Digit_span/";
 var imageExt = 'img/'
-
 var images = [
     "trophy2.jpeg"]
-
 var preload_images=[];
 
 for (var k = 0; k < images.length; k++) {
-    preload_images.push(imageExt+images[k]);
+    preload_images.push(repo+imageExt+images[k]);
 };
 
 
