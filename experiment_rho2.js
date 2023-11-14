@@ -302,7 +302,7 @@ var instruction_node = {
 
 var end_block = {                                          
     type: 'image-keyboard-response',
-    stimulus: 'img/trophy2.jpeg',
+    stimulus: repo+'img/trophy2.jpeg',
     prompt: '<p style = "font-size: 30px">Great job! You win another trophy! <br><br>Press <strong>"Enter/Return"</strong> to continue.</p>',
     response_ends_trial: true,
     choices: ['Enter'],
