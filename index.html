@@ -20,30 +20,13 @@
 <script src="lib/vendors/jspsych-6.1.0/plugins/jspsych-instructions.js"></script>
 <script src="lib/vendors/jspsych-6.1.0/plugins/jspsych-fullscreen.js"></script>
 <!--script type="text/javascript" src="lib/jspsych-pavlovia-3.2.5.js"></script-->
-<script type="text/javascript" src="jspsych-pavlovia-2020.3.js"></script>
+<!--<script type="text/javascript" src="jspsych-pavlovia-2020.3.js"></script>-->
 
 <!-- plugins updated as necessary to work with jspsych-6.1.0 -->
 <script src='js/jspsych/poldrack_plugins/jspsych-single-stim-button.js'></script>
 <script src='js/jspsych/poldrack_plugins/jspsych-poldrack-multi-stim-multi-response.js'></script>
 <script src='js/jspsych/poldrack_plugins/poldrack_utils.js'></script>
 
-
-<script>
-    var runat_pavlovia = true;
-
-/* preload images */
-var imageExt = 'img/'
-
-var images = [
-"trophy2.jpeg"]
-
-var preload_images=[];
-
-for (var k = 0; k < images.length; k++) {
-    preload_images.push(imageExt+images[k]);
-};
-
-</script>
 
 <script src='experiment_rho2.js'></script>
 
@@ -76,7 +59,7 @@ jsPsych.data.addProperties({order: order_id});
 $( document ).ready(function() {
     jsPsych.init({
              timeline: digit_span_experiment,
-             preload_images:preload_images,
+             preload_images: preload_images,
              on_trial_finish: function(data){
                addID('digit-span')
              },

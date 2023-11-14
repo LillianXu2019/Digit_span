@@ -1,3 +1,16 @@
+/* preload images */
+var imageExt = 'img/'
+
+var images = [
+    "trophy2.jpeg"]
+
+var preload_images=[];
+
+for (var k = 0; k < images.length; k++) {
+    preload_images.push(imageExt+images[k]);
+};
+
+
 // state variables
 var item = 0;  // 0-based item number
 var trial = 0;  // 0 or 1
@@ -568,45 +581,24 @@ let practice_item = {
     ]
 }
 
-// pavlovia stuff
-/* init connection with pavlovia.org */
-var pavlovia_init = {
-    type: "pavlovia",
-    command: "init"
-}
-
-/* finish connection with pavlovia.org */
-var pavlovia_finish = {
-    type: "pavlovia",
-    command: "finish",
-    // Thomas Pronk; call this function when we're done with the experiment and data reception has been confirmed by Pavlovia
-    completedCallback: function() {
-        alert('data successfully submitted!');
-    }
-}
 
 /* create experiment definition array */
 var digit_span_experiment = [];
-if(runat_pavlovia){
-    digit_span_experiment.push(pavlovia_init);
-}
+
 digit_span_experiment.push({
     type: 'fullscreen',
     fullscreen_mode: true
 });
 digit_span_experiment.push(instruction_node);
-for (i=0; i<forward_seqs[0].length; i++) {
+for (let i=0; i<forward_seqs[0].length; i++) {
     digit_span_experiment.push(forward_item)
 }
 //digit_span_experiment.push(attention_node)
 digit_span_experiment.push(start_reverse_block)
 digit_span_experiment.push(practice_item)
-for (i=0; i<reverse_seqs[0].length; i++) {
+for (let i=0; i<reverse_seqs[0].length; i++) {
     digit_span_experiment.push(reverse_item)
 }
 //digit_span_experiment.push(post_task_block)
 digit_span_experiment.push(end_block)
 
-if(runat_pavlovia){
-    digit_span_experiment.push(pavlovia_finish);
-}
