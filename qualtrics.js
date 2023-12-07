@@ -48,7 +48,10 @@ Qualtrics.SurveyEngine.addOnload(function () {
 
     var task_name = "digit-span";
     var save_url = "https://experiment.childemotion.waisman.wisc.edu/save_data.php";
-    var subject_id = "${e://Field/participantID}";
+    var child_id = "${e://Field/child}";
+    var response_id = "${e://Field/response}";
+
+    //var subject_id = "${e://Field/participantID}";
     var data_dir = task_name;
     var file_name = task_name + '_' + subject_id;
 
