@@ -58,8 +58,8 @@ jsPsych.data.addProperties({order: order_id});
 
 $( document ).ready(function() {
     jsPsych.init({
-             timeline: digit_span_experiment,
-             preload_images: preload_images,
+             timeline: g.digit_span_experiment,
+             preload_images: g.preload_images,
              on_trial_finish: function(data){
                addID('digit-span')
              },
@@ -67,7 +67,7 @@ $( document ).ready(function() {
              on_finish: function(data){
                  //jsPsych.data.displayData();
                  // link to QUIC
-                 window.location.replace('https://uwmadison.co1.qualtrics.com/jfe/form/SV_bHqCSvfBtQykpoi?orderID=' + order_id + '&participantID=' + getUrlParam('participantID'));
+                 //window.location.replace('https://uwmadison.co1.qualtrics.com/jfe/form/SV_bHqCSvfBtQykpoi?orderID=' + order_id + '&participantID=' + getUrlParam('participantID'));
              },
 
              dataFilter: function(data) {

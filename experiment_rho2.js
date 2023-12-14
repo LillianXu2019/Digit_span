@@ -1,22 +1,24 @@
-/* preload images */
-let repo = "https://lillianxu2019.github.io/Digit_span/";
-var imageExt = 'img/'
-var images = [
-    "trophy2.jpeg"]
-var preload_images=[];
+var g = {};  // put everything in a namespace variable
 
-for (var k = 0; k < images.length; k++) {
-    preload_images.push(repo+imageExt+images[k]);
+/* preload images */
+g.repo = "https://lillianxu2019.github.io/Digit_span/";
+g.imageExt = 'img/'
+g.images = [
+    "trophy2.jpeg"]
+g.preload_images=[];
+
+for (var k = 0; k < g.images.length; k++) {
+    g.preload_images.push(g.repo+g.imageExt+g.images[k]);
 };
 
 
 // state variables
-var item = 0;  // 0-based item number
-var trial = 0;  // 0 or 1
-var condition = 'forward';  // 'forward' or 'reverse'
-var item_score = 100;  // non-zero value so first item runs
+g.item = 0;  // 0-based item number
+g.trial = 0;  // 0 or 1
+g.condition = 'forward';  // 'forward' or 'reverse'
+g.item_score = 100;  // non-zero value so first item runs
 
-let forward_seqs = [
+g.forward_seqs = [
     [
         [2, 9],
         [3, 8, 6],
@@ -39,7 +41,7 @@ let forward_seqs = [
     ]
 ];
 
-let practice_seqs = [
+g.practice_seqs = [
     [
         [8, 2]
     ],
@@ -48,7 +50,7 @@ let practice_seqs = [
     ]
 ]
 
-let reverse_seqs = [
+g.reverse_seqs = [
     [
         [2, 5],
         [5, 7, 4],
@@ -88,7 +90,7 @@ function evalAttentionChecks() {
 }
 
 var getInstructFeedback = function() {
-    return '<div class = centerbox><p class = center-block-text>' + feedback_instruct_text +
+    return '<div class = centerbox><p class = center-block-text>' + g.feedback_instruct_text +
         '</p></div>'
 }
 
@@ -103,57 +105,57 @@ var arraysEqual = function(arr1, arr2) {
 }
 
 var setStims = function() {
-    curr_seq = []
-    stim_array = []
-    time_array = []
+    g.curr_seq = []
+    g.stim_array = []
+    g.time_array = []
 
-    if(condition === 'forward'){
-        curr_seq = forward_seqs[trial][item];
-    } else if(condition === 'reverse') {
-        curr_seq = reverse_seqs[trial][item];
+    if(g.condition === 'forward'){
+        g.curr_seq = g.forward_seqs[g.trial][g.item];
+    } else if(g.condition === 'reverse') {
+        g.curr_seq = g.reverse_seqs[g.trial][g.item];
     } else {
-        curr_seq = practice_seqs[trial][item];
+        g.curr_seq = g.practice_seqs[g.trial][g.item];
     }
-    num_digits = curr_seq.length;
+    g.num_digits = g.curr_seq.length;
 
-    for (let i=0; i<num_digits; i++){
-        let num = curr_seq[i];
-        stim_array.push('<div class = centerbox><div class = digit-span-text>' + num.toString() +
+    for (let i=0; i<g.num_digits; i++){
+        let num = g.curr_seq[i];
+        g.stim_array.push('<div class = centerbox><div class = digit-span-text>' + num.toString() +
             '</div></div>');
-        time_array.push(stim_time);
+        g.time_array.push(g.stim_time);
     }
 
-    total_time = num_digits * (stim_time + gap_time)
+    g.total_time = g.num_digits * (g.stim_time + g.gap_time)
 }
 
 var getTestText = function() {
-    return '<div class = centerbox><div class = center-text>' + num_digits + ' Digits</p></div>'
+    return '<div class = centerbox><div class = center-text>' + g.num_digits + ' Digits</p></div>'
 }
 
 var getStims = function() {
-    return stim_array
+    return g.stim_array
 }
 
 var getTimeArray = function() {
-    return time_array
+    return g.time_array
 }
 
 var getTotalTime = function() {
-    return total_time
+    return g.total_time
 }
 
 var getFeedback = function() {
-    return '<div class = centerbox><div class = center-block-text>' + feedback + '</div></div>'
+    return '<div class = centerbox><div class = center-block-text>' + g.feedback + '</div></div>'
 }
 
 var recordClick = function(elm) {
-    response.push(Number($(elm).text()))
-    $('#response_box').html(response);
+    g.response.push(Number($(elm).text()))
+    $('#response_box').html(g.response);
 }
 
 var clearResponse = function() {
     $('#response_box').html('');
-    response = []
+    g.response = []
 }
 
 
@@ -162,26 +164,26 @@ var clearResponse = function() {
 /* Define experimental variables */
 /* ************************************ */
 // generic task variables
-var run_attention_checks = false
-var attention_check_thresh = 0.65
-var sumInstructTime = 0 //ms
-var instructTimeThresh = 0 ///in seconds
+g.run_attention_checks = false
+g.attention_check_thresh = 0.65
+g.sumInstructTime = 0 //ms
+g.instructTimeThresh = 0 ///in seconds
 
 // task specific variables
-var num_digits;
+g.num_digits;
 //var num_trials = 14
-var curr_seq = []
-var stim_time = 1000
-var gap_time = 200
-var time_array = []
-var total_time = 0
-var errors = 0
-var error_lim = 3
-var response = []
+g.curr_seq = []
+g.stim_time = 1000
+g.gap_time = 200
+g.time_array = []
+g.total_time = 0
+g.errors = 0
+g.error_lim = 3
+g.response = []
 setStims()
-var stim_array = getStims()
+g.stim_array = getStims()
 
-var response_grid =
+g.response_grid =
     '<div class = numbox>' +
     '<div style="border:1px solid black;height:80px; line-height:80px; border-radius:15px;"><div class="numbers"  style="top:0;letter-spacing:1rem;" id="response_box" ></div></div>' +
     '<button id = button_1 class = "square num-button" onclick = "recordClick(this)"><div class = content><div class = numbers>1</div></div></button>' +
@@ -206,7 +208,7 @@ var response_grid =
 // jsPsych.data.addProperties({subject: subject_id});
 
 // Set up attention check node
-var attention_check_block = {
+g.attention_check_block = {
     type: 'attention-check',
     data: {
         trial_id: "attention_check"
@@ -216,17 +218,17 @@ var attention_check_block = {
     timing_post_trial: 200
 }
 
-var attention_node = {
-    timeline: [attention_check_block],
+g.attention_node = {
+    timeline: [g.attention_check_block],
     conditional_function: function() {
         return run_attention_checks
     }
 }
 
 /* define static blocks */
-var feedback_instruct_text =
+g.feedback_instruct_text =
     'Welcome to the number game! It will take less than 5 minutes. Press <strong>"Enter/Return"</strong> to begin.'
-var feedback_instruct_block = {
+g.feedback_instruct_block = {
     type: 'html-keyboard-response',
     choices: ['Enter'],
     data: {
@@ -237,7 +239,7 @@ var feedback_instruct_block = {
     trial_duration: 180000
 };
 /// This ensures that the subject does not read through the instructions too quickly.  If they do it too quickly, then we will go over the loop again.
-var instructions_block1 = {
+g.instructions_block1 = {
     type: 'instructions',
     data: {
         trial_id: "instruction"
@@ -252,7 +254,7 @@ var instructions_block1 = {
     allow_backward: false
 };
 
-var instructions_block2 = {
+g.instructions_block2 = {
     type: 'instructions',
     data: {
         trial_id: "instruction"
@@ -267,21 +269,21 @@ var instructions_block2 = {
     allow_backward: false
 };
 
-var instruction_node = {
-    timeline: [feedback_instruct_block, instructions_block1, instructions_block2],
+g.instruction_node = {
+    timeline: [g.feedback_instruct_block, g.instructions_block1, g.instructions_block2],
     /* This function defines stopping criteria */
     loop_function: function(data) {
         let last_trial = data.last().values()[0];
         if ((last_trial.trial_type == 'instructions') && (last_trial.rt != -1)) {
             rt = last_trial.rt;
-            sumInstructTime = sumInstructTime + rt;
+            g.sumInstructTime = g.sumInstructTime + rt;
         }
-        if (sumInstructTime <= instructTimeThresh * 1000) {
-            feedback_instruct_text =
+        if (g.sumInstructTime <= g.instructTimeThresh * 1000) {
+            g.feedback_instruct_text =
                 'Read through instructions too quickly.  Please take your time and make sure you understand the instructions.  Press <strong>enter</strong> to continue.'
             return true
-        } else if (sumInstructTime > instructTimeThresh * 1000) {
-            feedback_instruct_text =
+        } else if (g.sumInstructTime > g.instructTimeThresh * 1000) {
+            g.feedback_instruct_text =
                 'Done with instructions. Press <strong>enter</strong> to continue.'
             return false
         }
@@ -300,9 +302,9 @@ var instruction_node = {
 //     post_trial_gap: 0
 // };
 
-var end_block = {                                          
+g.end_block = {
     type: 'image-keyboard-response',
-    stimulus: repo+'img/trophy2.jpeg',
+    stimulus: g.repo+'img/trophy2.jpeg',
     prompt: '<p style = "font-size: 30px">Great job! You win another trophy! <br><br>Press <strong>"Enter/Return"</strong> to continue.</p>',
     response_ends_trial: true,
     choices: ['Enter'],
@@ -313,7 +315,7 @@ var end_block = {
 };
 
 
-var start_test_block = {
+g.start_test_block = {
     type: 'html-keyboard-response',
     stimulus: getTestText,
     data: {
@@ -326,7 +328,7 @@ var start_test_block = {
     post_trial_gap: 1000
 };
 
-var start_reverse_block = {
+g.start_reverse_block = {
     type: 'html-keyboard-response',
     trial_duration: 180000,
     data: {
@@ -335,22 +337,22 @@ var start_reverse_block = {
     stimulus: '<div class = centerbox><p class = block-text>Now, you will see some numbers, but this time you will enter them <strong>backward</strong>.<br><br>For example, you see <strong>“1—5”</strong>, and you will enter <strong>“5—1”</strong>.<br><br><br>Press <strong>"Enter/Return"</strong> to begin.</p></div>',
     choices: ['Enter'],
     on_finish: function() {
-        condition = 'practice';
-        item = 0;
-        trial = 0;
-        item_score = 100;  // set to non-zero so first item starts
-        stims = setStims()
+        g.condition = 'practice';
+        g.item = 0;
+        g.trial = 0;
+        g.item_score = 100;  // set to non-zero so first item starts
+        g.stims = setStims()
     }
 }
 
 
 /* define test block */
-var test_block = {
+g.test_block = {
     type: 'poldrack-multi-stim-multi-response',
     stimuli: getStims,
     is_html: true,
     timing_stim: getTimeArray,
-    timing_gap: gap_time,
+    timing_gap: g.gap_time,
     choices: [
         ['none']
     ],
@@ -362,15 +364,15 @@ var test_block = {
     timing_post_trial: 0,
     on_finish: function() {
         jsPsych.data.addDataToLastTrial({
-            "sequence": curr_seq,
-            "num_digits": num_digits
+            "sequence": g.curr_seq,
+            "num_digits": g.num_digits
         })
     }
 }
 
-var forward_response_block = {
+g.forward_response_block = {
     type: 'single-stim-button',
-    stimulus: response_grid,
+    stimulus: g.response_grid,
     button_class: 'submit_button',
     data: {
         trial_id: "response",
@@ -378,48 +380,48 @@ var forward_response_block = {
     },
     on_finish: function() {
         jsPsych.data.addDataToLastTrial({
-            "response": response.slice(),
-            "sequence": curr_seq,
-            "num_digits": num_digits,
+            "response": g.response.slice(),
+            "sequence": g.curr_seq,
+            "num_digits": g.num_digits,
             "condition": "forward"
         })
-        let correct = arraysEqual(response, curr_seq);
+        let correct = arraysEqual(g.response, g.curr_seq);
         if(correct){
-            feedback = '<span style="color:green">Correct!</span>'
+            g.feedback = '<span style="color:green">Correct!</span>'
         } else {
-            feedback = '<span style="color:red">Incorrect</span>'
+            g.feedback = '<span style="color:red">Incorrect</span>'
         }
-        if(trial===0){
+        if(g.trial===0){
             if(correct){
-                item_score = 1;
+                g.item_score = 1;
             } else {
-                item_score = 0;
+                g.item_score = 0;
             }
         } else {
             if(correct){
-                item_score += 1;
+                g.item_score += 1;
             }
         }
         jsPsych.data.addDataToLastTrial({
             correct: correct
         })
-        response = [];
-        if(trial===0){
-            trial = 1;
+        g.response = [];
+        if(g.trial===0){
+            g.trial = 1;
         } else {
-            trial = 0;
-            item += 1;
+            g.trial = 0;
+            g.item += 1;
         }
-        if (item < forward_seqs[0].length) {
+        if (g.item < g.forward_seqs[0].length) {
             setStims()
         }
     },
     timing_post_trial: 1000
 }
 
-var reverse_response_block = {
+g.reverse_response_block = {
     type: 'single-stim-button',
-    stimulus: response_grid,
+    stimulus: g.response_grid,
     button_class: 'submit_button',
     data: {
         trial_id: "response",
@@ -427,48 +429,48 @@ var reverse_response_block = {
     },
     on_finish: function() {
         jsPsych.data.addDataToLastTrial({
-            "response": response.slice(),
-            "sequence": curr_seq,
-            "num_digits": num_digits,
+            "response": g.response.slice(),
+            "sequence": g.curr_seq,
+            "num_digits": g.num_digits,
             "condition": "reverse"
         })
-        let correct = arraysEqual(response.reverse(), curr_seq);
+        let correct = arraysEqual(g.response.reverse(), g.curr_seq);
         if(correct){
-            feedback = '<span style="color:green">Correct!</span>'
+            g.feedback = '<span style="color:green">Correct!</span>'
         } else {
-            feedback = '<span style="color:red">Incorrect</span>'
+            g.feedback = '<span style="color:red">Incorrect</span>'
         }
-        if(trial===0){
+        if(g.trial===0){
             if(correct){
-                item_score = 1;
+                g.item_score = 1;
             } else {
-                item_score = 0;
+                g.item_score = 0;
             }
         } else {
             if(correct){
-                item_score += 1;
+                g.item_score += 1;
             }
         }
         jsPsych.data.addDataToLastTrial({
             correct: correct
         })
-        response = [];
-        if(trial===0){
-            trial = 1;
+        g.response = [];
+        if(g.trial===0){
+            g.trial = 1;
         } else {
-            trial = 0;
-            item += 1;
+            g.trial = 0;
+            g.item += 1;
         }
-        if (item < reverse_seqs[0].length) {
+        if (g.item < g.reverse_seqs[0].length) {
             setStims()
         }
     },
     timing_post_trial: 1000
 }
 
-var practice_response_block = {
+g.practice_response_block = {
     type: 'single-stim-button',
-    stimulus: response_grid,
+    stimulus: g.response_grid,
     button_class: 'submit_button',
     data: {
         trial_id: "response",
@@ -476,28 +478,28 @@ var practice_response_block = {
     },
     on_finish: function() {
         jsPsych.data.addDataToLastTrial({
-            "response": response.slice(),
-            "sequence": curr_seq,
-            "num_digits": num_digits,
+            "response": g.response.slice(),
+            "sequence": g.curr_seq,
+            "num_digits": g.num_digits,
             "condition": "practice"
         })
-        let correct = arraysEqual(response.reverse(), curr_seq);
+        let correct = arraysEqual(g.response.reverse(), g.curr_seq);
         if(correct){
-            feedback = '<span style="color:green">Correct!</span>'
+            g.feedback = '<span style="color:green">Correct!</span>'
         } else {
-            feedback = '<span style="color:red">No, you should enter "2—8".<br><br>You saw "8—2", so to enter it <strong>backward</strong>, you would press "2—8".</span>'
+            g.feedback = '<span style="color:red">No, you should enter "2—8".<br><br>You saw "8—2", so to enter it <strong>backward</strong>, you would press "2—8".</span>'
         }
         jsPsych.data.addDataToLastTrial({
             correct: correct
         })
-        response = [];
-        if(trial===0){
-            trial = 1;
+        g.response = [];
+        if(g.trial===0){
+            g.trial = 1;
         } else {
-            trial = 0;
-            item = 0;
-            condition = 'reverse';
-            item_score = 100;  // set to non-zero so first item starts
+            g.trial = 0;
+            g.item = 0;
+            g.condition = 'reverse';
+            g.item_score = 100;  // set to non-zero so first item starts
         }
         setStims()
     },
@@ -517,7 +519,7 @@ var practice_response_block = {
 //     response_ends_trial: true
 // }
 
-var practice_feedback_block = {
+g.practice_feedback_block = {
     type: 'html-keyboard-response',
     stimulus: getFeedback,
     data: {
@@ -530,74 +532,73 @@ var practice_feedback_block = {
 }
 
 
-let forward_item = {
+g.forward_item = {
     timeline: [
-        start_test_block,
-        test_block,
-        forward_response_block,
+        g.start_test_block,
+        g.test_block,
+        g.forward_response_block,
         //feedback_block,
 
-        start_test_block,
-        test_block,
-        forward_response_block,
+        g.start_test_block,
+        g.test_block,
+        g.forward_response_block,
         //feedback_block
     ],
     conditional_function: function(){
     // execute this item only if the score for the previous item > 0
-    return item_score > 0;
+    return g.item_score > 0;
   }
 }
 
-let reverse_item = {
+g.reverse_item = {
     timeline: [
-        start_test_block,
-        test_block,
-        reverse_response_block,
+        g.start_test_block,
+        g.test_block,
+        g.reverse_response_block,
         //feedback_block,
 
-        start_test_block,
-        test_block,
-        reverse_response_block,
+        g.start_test_block,
+        g.test_block,
+        g.reverse_response_block,
         //feedback_block
     ],
     conditional_function: function(){
         // execute this item only if the score for the previous item > 0
-        return item_score > 0;
+        return g.item_score > 0;
     }
 }
 
-let practice_item = {
+g.practice_item = {
     timeline: [
-        start_test_block,
-        test_block,
-        practice_response_block,
-        practice_feedback_block,
+        g.start_test_block,
+        g.test_block,
+        g.practice_response_block,
+        g.practice_feedback_block,
 
-        start_test_block,
-        test_block,
-        practice_response_block,
+        g.start_test_block,
+        g.test_block,
+        g.practice_response_block,
         //feedback_block
     ]
 }
 
-
 /* create experiment definition array */
-var digit_span_experiment = [];
+g.digit_span_experiment = [];
 
-digit_span_experiment.push({
+g.digit_span_experiment.push({
     type: 'fullscreen',
     fullscreen_mode: true
 });
-digit_span_experiment.push(instruction_node);
-for (let i=0; i<forward_seqs[0].length; i++) {
-    digit_span_experiment.push(forward_item)
+g.digit_span_experiment.push(g.instruction_node);
+for (let i=0; i<g.forward_seqs[0].length; i++) {
+    g.digit_span_experiment.push(g.forward_item)
 }
 //digit_span_experiment.push(attention_node)
-digit_span_experiment.push(start_reverse_block)
-digit_span_experiment.push(practice_item)
-for (let i=0; i<reverse_seqs[0].length; i++) {
-    digit_span_experiment.push(reverse_item)
+g.digit_span_experiment.push(g.start_reverse_block)
+g.digit_span_experiment.push(g.practice_item)
+for (let i=0; i<g.reverse_seqs[0].length; i++) {
+    g.digit_span_experiment.push(g.reverse_item)
 }
 //digit_span_experiment.push(post_task_block)
-digit_span_experiment.push(end_block)
+g.digit_span_experiment.push(g.end_block)
 
