@@ -9,6 +9,7 @@ Qualtrics.SurveyEngine.addOnload(function () {
     /* Define and load required resources */
     var jslib_url = "https://lillianxu2019.github.io/Digit_span/";
 
+
     var requiredResources = [
         jslib_url + "lib/vendors/jquery-2.2.0.min.js",
         jslib_url + "js/math.min.js",
@@ -48,10 +49,10 @@ Qualtrics.SurveyEngine.addOnload(function () {
 
     var task_name = "digit-span";
     var save_url = "https://experiment.childemotion.waisman.wisc.edu/save_data.php";
-    var child_id = "${e://Field/child}";
-    var response_id = "${e://Field/response}";
+    //var child_id = "${e://Field/child}";
+    //var response_id = "${e://Field/response}";
 
-    //var subject_id = "${e://Field/participantID}";
+    var subject_id = "${e://Field/participantID}";
     var data_dir = task_name;
     var file_name = task_name + '_' + subject_id;
 
@@ -116,5 +117,5 @@ Qualtrics.SurveyEngine.addOnReady(function () {
 
 Qualtrics.SurveyEngine.addOnUnload(function () {
     /*Place your JavaScript here to run when the page is unloaded*/
-    g = undefined;
+	g = undefined;
 });
