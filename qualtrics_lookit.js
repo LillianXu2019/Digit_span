@@ -86,8 +86,8 @@ Qualtrics.SurveyEngine.addOnload(function () {
     /* Wrap jsPsych.init() in a function */
     function initExp() {
         jsPsych.init({
-            timeline: digit_span_experiment,
-            preload_images: preload_images,
+            timeline: g.digit_span_experiment,
+            preload_images: g.preload_images,
             display_element: 'display_stage',
 
             on_finish: function (data) {
@@ -117,5 +117,6 @@ Qualtrics.SurveyEngine.addOnReady(function () {
 
 Qualtrics.SurveyEngine.addOnUnload(function () {
     /*Place your JavaScript here to run when the page is unloaded*/
+	g = undefined;
 
 });
